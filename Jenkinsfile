@@ -1,14 +1,15 @@
 pipeline {
     agent any
-    stages {
-        stage('Build') {
-            steps { echo 'Building dummy code...' }
-        }
-        stage('Test') {
-            steps { echo 'Running tests...' }
-        }
-        stage('Deploy') {
-            steps { echo 'Deploying to Nginx...' }
-        }
+    
+    environment {
+        IMAGE_NAME = 'devops-website'
+        IMAGE_TAG = "${BUILD_NUMBER}"
     }
-}
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                echo 'Checking out code...'
+                checkout scm
+            }
+        }
