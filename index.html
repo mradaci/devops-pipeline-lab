@@ -2,98 +2,159 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LEVELING UP: A Tech & Life Blog</title>
+<title>Learning in Public</title>
+<style>
+:root {
+  --bg: #f4f1ea;
+  --container-bg: #ffffff;
+  --text: #222;
+  --border: #222;
+  --shadow: #222;
+  --secondary: #666;
+}
+
+[data-theme="dark"] {
+  --bg: #1a1a1a;
+  --container-bg: #2a2a2a;
+  --text: #e0e0e0;
+  --border: #e0e0e0;
+  --shadow: #e0e0e0;
+  --secondary: #888;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  font-family: "Courier New", monospace;
+  color: var(--text);
+  transition: background 0.3s, color 0.3s;
+}
+
+.container {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 40px;
+  background: var(--container-bg);
+  border: 4px solid var(--border);
+  box-shadow: 8px 8px 0 var(--shadow);
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  letter-spacing: 2px;
+}
+
+.subtitle {
+  color: var(--secondary);
+  margin-bottom: 40px;
+}
+
+h2 {
+  margin-top: 40px;
+  border-bottom: 2px dashed var(--border);
+  padding-bottom: 5px;
+}
+
+p {
+  line-height: 1.7;
+  margin: 20px 0;
+}
+
+footer {
+  margin-top: 60px;
+  font-size: 14px;
+  color: var(--secondary);
+}
+
+.theme-toggle {
+  background: none;
+  border: 2px solid var(--border);
+  color: var(--text);
+  padding: 8px 16px;
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  transition: border-color 0.3s, color 0.3s;
+}
+
+.theme-toggle:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+.header-text {
+  flex: 1;
+}
+</style>
 </head>
-<body style="margin:0; padding:0; background:#0d0d0d; font-family:'Courier New', monospace; color:#00ffcc;">
 
-<div style="max-width:900px; margin:40px auto; padding:20px; border:4px solid #ff00ff; box-shadow:0 0 20px #ff00ff; background:#1a1a1a;">
-
-    <!-- Header -->
-    <div style="text-align:center; padding:20px; border-bottom:3px dashed #00ffcc;">
-        <h1 style="font-size:42px; margin:0; color:#ffff00; text-shadow:3px 3px #ff00ff;">
-            🎮 LEVELING UP 🎮
-        </h1>
-        <p style="margin:10px 0 0 0; font-size:14px; color:#00ffcc;">
-            A Personal Tech & Life Journey — Press Start to Continue
-        </p>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="header-text">
+        <h1>Learning in Public</h1>
+        <div class="subtitle">Thoughts on tech, growth, and figuring things out</div>
+      </div>
+      <button class="theme-toggle" onclick="toggleTheme()">◐</button>
     </div>
 
-    <!-- Navigation -->
-    <div style="text-align:center; margin:20px 0;">
-        <span style="margin:0 15px; color:#ff00ff;">[ HOME ]</span>
-        <span style="margin:0 15px; color:#ff00ff;">[ ABOUT ]</span>
-        <span style="margin:0 15px; color:#ff00ff;">[ ARCHIVE ]</span>
-        <span style="margin:0 15px; color:#ff00ff;">[ CONTACT ]</span>
-    </div>
+    <h2>The Long Road to Competence</h2>
+    <p>
+      My journey in tech didn't start with brilliance. It started with confusion.
+      Broken environments. StackOverflow tabs. The humbling realization that I
+      didn't know nearly as much as I thought I did.
+    </p>
 
-    <!-- Blog Post -->
-    <div style="margin-top:30px; padding:20px; border:3px solid #00ffcc; background:#111;">
+    <p>
+      Over time, something changed. I stopped trying to be impressive and
+      started trying to understand. That shift made all the difference.
+    </p>
 
-        <h2 style="color:#ff00ff; text-shadow:2px 2px #000;">
-            🕹️ Stage 1: Curiosity Spawn Point
-        </h2>
+    <h2>Systems Thinking</h2>
+    <p>
+      Whether it's cloud architecture or personal habits, everything is a
+      system. Inputs, outputs, feedback loops. Improve the system and the
+      results follow.
+    </p>
 
-        <p style="line-height:1.6; font-size:16px;">
-            Every journey starts somewhere. Mine began with a blinking cursor and a simple question:
-            <span style="color:#ffff00;">“What happens if I change this?”</span>
-            That curiosity turned into late nights, broken code, and the thrill of finally seeing something work.
-        </p>
+    <h2>Staying Curious</h2>
+    <p>
+      The best engineers I've met aren't the loudest. They're the most curious.
+      They ask better questions. They iterate faster. They treat mistakes as
+      data.
+    </p>
 
-        <p style="line-height:1.6; font-size:16px;">
-            Technology became more than a tool — it became a playground. From writing my first scripts to
-            architecting systems, each bug was a mini-boss battle. Sometimes I lost. Sometimes I rage-quit.
-            But eventually, I learned the cheat code:
-            <span style="color:#ffff00;">Keep Iterating.</span>
-        </p>
+    <footer>
+      © 2026 — Built simply. No frameworks. No noise.
+    </footer>
+  </div>
 
-        <h2 style="color:#ff00ff; text-shadow:2px 2px #000; margin-top:30px;">
-            💾 Stage 2: Debugging Life
-        </h2>
+  <script>
+    (function() {
+      const saved = localStorage.getItem('theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (saved === 'dark' || (!saved && prefersDark)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
 
-        <p style="line-height:1.6; font-size:16px;">
-            The funny thing about learning tech is that it mirrors life. You deploy something.
-            It breaks. You patch it. You optimize. Repeat.
-        </p>
-
-        <p style="line-height:1.6; font-size:16px;">
-            Growth isn’t linear. It’s versioned.
-        </p>
-
-        <div style="background:#000; padding:15px; border:2px dashed #ffff00; margin:20px 0;">
-            <p style="margin:0; color:#00ff00;">
-                v1.0 — Beginner Energy<br>
-                v2.0 — Imposter Syndrome<br>
-                v3.0 — Quiet Confidence<br>
-                v4.0 — Mentoring Others
-            </p>
-        </div>
-
-        <h2 style="color:#ff00ff; text-shadow:2px 2px #000; margin-top:30px;">
-            🚀 Stage 3: Infinite Mode
-        </h2>
-
-        <p style="line-height:1.6; font-size:16px;">
-            There’s no final level. No end credits. Just new challenges, new tools, new perspectives.
-            AI, cloud systems, automation, creativity — every wave reshapes the map.
-        </p>
-
-        <p style="line-height:1.6; font-size:16px;">
-            And maybe that’s the point. Not to “win” — but to keep playing.
-            To keep building. To keep learning.
-        </p>
-
-        <p style="font-size:18px; color:#ffff00; margin-top:30px;">
-            ★ Achievement Unlocked: Progress Over Perfection ★
-        </p>
-
-    </div>
-
-    <!-- Footer -->
-    <div style="text-align:center; margin-top:40px; padding-top:20px; border-top:3px dashed #00ffcc; font-size:12px; color:#888;">
-        © 2026 LEVELING UP BLOG | Built with curiosity + caffeine ☕ | No extra lives required.
-    </div>
-
-</div>
-
+    function toggleTheme() {
+      const html = document.documentElement;
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+  </script>
 </body>
 </html>
